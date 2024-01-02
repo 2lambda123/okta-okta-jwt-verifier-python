@@ -5,7 +5,6 @@
 
 # Okta JWT Verifier for Python
 
-
 - [Release Status](#release-status)
 - [Need help?](#need-help)
 - [Getting Started](#getting-started)
@@ -21,9 +20,9 @@ This library helps you verify tokens that have been issued by Okta. To learn mor
 
 This library uses semantic versioning and follows Okta's [Library Version Policy][okta-library-versioning].
 
-| Version | Status                           |
-| ------- | -------------------------------- |
-| 0.x     | :heavy_check_mark: Beta Release  |
+| Version | Status                          |
+| ------- | ------------------------------- |
+| 0.x     | :heavy_check_mark: Beta Release |
 
 The latest release can always be found on the [releases page][github-releases].
 
@@ -44,7 +43,7 @@ pip install okta-jwt-verifier
 
 This library was built to keep configuration to a minimum. To get it running at its most basic form, all you need to provide is the the following information:
 
-- **Issuer** - This is the URL of the authorization server that will perform authentication.  All Developer Accounts have a "default" authorization server.  The issuer is a combination of your Org URL (found in the upper right of the console home page) and `/oauth2/default`. For example, `https://dev-1234.oktapreview.com/oauth2/default`.
+- **Issuer** - This is the URL of the authorization server that will perform authentication. All Developer Accounts have a "default" authorization server. The issuer is a combination of your Org URL (found in the upper right of the console home page) and `/oauth2/default`. For example, `https://dev-1234.oktapreview.com/oauth2/default`.
 - **Client ID** - These can be found on the "General" tab of the Web application that you created earlier in the Okta Developer Console.
 - **Audience** - By default `api://default`, can be found on Authorization Servers tab.
 
@@ -71,6 +70,7 @@ loop.run_until_complete(main())
 These examples will help you understand how to use this library.
 
 Verify ID Token:
+
 ```py
 import asyncio
 
@@ -86,9 +86,11 @@ async def main():
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
 ```
+
 > Note: parameter `nonce` is optional and required only if token was generated with nonce.
 
 Another option - use class dedicated to ID tokens verification:
+
 ```py
 import asyncio
 
@@ -106,6 +108,7 @@ loop.run_until_complete(main())
 ```
 
 Verify Access Token
+
 ```py
 import asyncio
 
@@ -123,6 +126,7 @@ loop.run_until_complete(main())
 ```
 
 It is possible to verify signature if JWK is provided (no async requests):
+
 ```py
 from okta_jwt_verifier import BaseJWTVerifier
 
@@ -136,6 +140,7 @@ main()
 ```
 
 The following example shows how to receive JWK using async http request:
+
 ```py
 import asyncio
 
@@ -154,7 +159,6 @@ async def main():
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
 ```
-
 
 It is possible to verify only given list of claims (no async requests):
 
@@ -187,6 +191,7 @@ main()
 ```
 
 v 0.2.0 allows to work via proxy:
+
 ```py
 # BaseJWTVerifier will be deprecated soon
 jwt_verifier = BaseJWTVerifier(issuer='{ISSUER}', proxy='{PROXY}')
@@ -216,7 +221,9 @@ async def main():
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
 ```
+
 Output (part of traceback removed for simplicity):
+
 ```sh
 Traceback (most recent call last):
 ...
@@ -224,6 +231,7 @@ okta_jwt_verifier.exceptions.JWTValidationException: Signature has expired.
 ```
 
 If configuration provided is invalid, verifier will raise an exception `JWTInvalidConfigException`:
+
 ```py
 import asyncio
 
@@ -238,7 +246,9 @@ async def main():
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
 ```
+
 Output (part of traceback removed for simplicity):
+
 ```sh
 Traceback (most recent call last):
 ...
@@ -246,6 +256,7 @@ okta_jwt_verifier.exceptions.JWTInvalidConfigException: Your Okta URL must start
 ```
 
 If JWK is invalid, verifier will raise an exception `JWKException`:
+
 ```py
 import asyncio
 
@@ -260,7 +271,9 @@ async def main():
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
 ```
+
 Output (part of traceback removed for simplicity):
+
 ```sh
 Traceback (most recent call last):
 ...
