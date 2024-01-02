@@ -6,6 +6,7 @@
 
 # Okta JWT Verifier for Python
 
+
 - [Release Status](#release-status)
 - [Need help?](#need-help)
 - [Getting Started](#getting-started)
